@@ -1,2 +1,8 @@
 User Command: node liri.js movie-this undefined
 
+User Command: node liri.js movie-this Mr. Nobody
+
+User Command: node liri.js movie-this Mr. Nobody
+
+User Command: node liri.js movie-this Beyonce
+

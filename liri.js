@@ -1,8 +1,9 @@
 require("dotenv").config();
 
-var Spotify = require('spotify');
+var Spotify = require("spotify");
 var keys = require("./keys.js");
 var request = require("request");
+var moment = require('moment');
 var fs = require("fs");
 var userInput = process.argv;
 var searchType = userInput[2];
@@ -27,7 +28,28 @@ switch (searchType) {
 	break;
 };
 
-// * `spotify-this-song`
+// 'concert-this'
+function concert(searchTerm) {
+
+    var queryUrl = "https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp";
+
+    request(queryUrl, function(error, response, body) {
+        if (!searchTerm){
+            searchTerm = 'Beyonce';
+        }
+        if (!error && response.statusCode === 200) {
+            var results = JSON.parse(body)[0];
+            console.log("Venue: " + results.venue.name);
+            console.log("Location: " + results.venue.city);
+            console.log("Event Date: " + moment(results.datetime).format("MM/DD/YYYY"));
+
+            fs.appendFile('./log.txt', 'User Command: node liri.js movie-this ' + searchTerm + '\n\n', (err) => {
+                if (err) throw err;
+        });
+      }
+    });
+};
+// `spotify-this-song`
 function spotify(searchTerm){
 
     var spotify = Spotify(keys.spotify);
@@ -36,28 +58,28 @@ function spotify(searchTerm){
      }
 
     spotify.search({
-        type:"track",
+        type:'track',
         query: searchTerm}, function(err, data){
 
         if (err) {
             console.log("Error occurred: " + err);
             return;
-
-    // Append the command to the log file
+        }
+        
 	fs.appendFile('./log.txt', 'User Command: node liri.js spotify-this-song ' + song + '\n\n', (err) => {
 		if (err) throw err;
     });
-    }
     })
     };
 
-    function movie(searchTerm) {
+// 'movie-this
+function movie(searchTerm) {
 
         var queryUrl = "http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy";
     
         request(queryUrl, function(error, response, body) {
-            if (searchTerm === ""){
-                var searchTerm = "Mr Nobody";
+            if (!searchTerm){
+                searchTerm = 'Mr. Nobody';
             }
             if (!error && response.statusCode === 200) {
     
