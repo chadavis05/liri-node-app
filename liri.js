@@ -28,7 +28,7 @@ switch (searchType) {
 	break;
 };
 
-// 'concert-this'
+// concert-this
 function concert(searchTerm) {
 
     var queryUrl = "https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp";
@@ -38,18 +38,22 @@ function concert(searchTerm) {
             searchTerm = 'Beyonce';
         }
         if (!error && response.statusCode === 200) {
-            var results = JSON.parse(body)[0];
-            console.log("Venue: " + results.venue.name);
-            console.log("Location: " + results.venue.city);
-            console.log("Event Date: " + moment(results.datetime).format("MM/DD/YYYY"));
+            var results = JSON.parse(body);
+            // console.log(results);
 
+            for (i=0; i < results.lenght; i++);{
+            console.log("Venue: " + results[i].venue.name);
+            console.log("Location: " + results[i].venue.city);
+            console.log("Event Date: " + moment(results[i].datetime).format("MM/DD/YYYY"));
+            };
+            
             fs.appendFile('./log.txt', 'User Command: node liri.js movie-this ' + searchTerm + '\n\n', (err) => {
                 if (err) throw err;
         });
       }
     });
 };
-// `spotify-this-song`
+// spotify-this-song
 function spotify(searchTerm){
 
     var spotify = Spotify(keys.spotify);
@@ -72,7 +76,7 @@ function spotify(searchTerm){
     })
     };
 
-// 'movie-this
+// movie-this
 function movie(searchTerm) {
 
         var queryUrl = "http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy";
@@ -82,15 +86,15 @@ function movie(searchTerm) {
                 searchTerm = 'Mr. Nobody';
             }
             if (!error && response.statusCode === 200) {
-    
-                console.log("Title: " + JSON.parse(body).Title);
-                console.log("Release Year: " + JSON.parse(body).Year);
-                console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-                console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
-                console.log("Country: " + JSON.parse(body).Country);
-                console.log("Language: " + JSON.parse(body).Language);
-                console.log("Plot: " + JSON.parse(body).Plot);
-                console.log("Actors: " + JSON.parse(body).Actors);
+                var results = JSON.parse(body); 
+                console.log("Title: " + results.Title);
+                console.log("Release Year: " + results.Year);
+                console.log("IMDB Rating: " + results.imdbRating);
+                console.log("Rotten Tomatoes Rating: " + results.Ratings[1].Value);
+                console.log("Country: " + results.Country);
+                console.log("Language: " + results.Language);
+                console.log("Plot: " + results.Plot);
+                console.log("Actors: " + results.Actors);
 
                 fs.appendFile('./log.txt', 'User Command: node liri.js movie-this ' + searchTerm + '\n\n', (err) => {
                     if (err) throw err;

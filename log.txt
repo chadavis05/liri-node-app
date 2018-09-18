@@ -6,3 +6,19 @@ User Command: node liri.js movie-this Mr. Nobody
 
 User Command: node liri.js movie-this Beyonce
 
+User Command: node liri.js movie-this Jaws
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Jaws
+
