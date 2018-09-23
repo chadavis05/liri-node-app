@@ -24,7 +24,7 @@ switch (searchType) {
 	break;
 
 	case "do-what-it-says":
-	doit(searchTerm);
+	justDoIt();
 	break;
 };
 
@@ -101,7 +101,30 @@ function movie(searchTerm) {
             });
           }
         });
+
+    };
+
+
+function justDoIt() {
+        fs.readFile('random.txt', "utf8", function(error, data){
+        
+               if (error) {
+                  return console.log(error);
+                  }
+                var dataArray = data.split(",");
+                  // console.log(dataArray);
+        
+                if (dataArray[0] === "concert-this") {
+                    var checkConcert = dataArray[1].slice(1, -1);
+                    concert(checkConcert);
+                } else if (dataArray[0] === "spotify-this-song") {
+                    var checkSong = dataArray[1].slice(1, -1);
+                    spotify(checkSong);
+                } else if(dataArray[0] === "movie-this") {
+                    var movie_name = dataArray[1].slice(1, -1);
+                    movie(movie_name);
+                }
+          });
     };
         
   
-  // spotifyThisSong(SearchTerm);

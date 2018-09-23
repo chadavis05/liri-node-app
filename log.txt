@@ -22,3 +22,23 @@ User Command: node liri.js movie-this Beyonce
 
 User Command: node liri.js movie-this Jaws
 
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Jaws
+
+User Command: node liri.js movie-this Jaws
+
+User Command: node liri.js movie-this Beyonce
+
+User Command: node liri.js movie-this Jaws
+
+User Command: node liri.js movie-this Beyonc
+
+User Command: node liri.js movie-this JAWS
+
+User Command: node liri.js movie-this Beyonce
+
